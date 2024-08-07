@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from baseclasses import BaseMemory
+from base import BaseMemory
 
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -115,9 +115,11 @@ if __name__ == "__main__":
     progress_bar = tqdm(range(total_steps), total=total_steps)
     batch = []
     
+    # Repeat for N steps
     for step in progress_bar:
         progress_bar.set_description_str(str(dict(index=step%buffer_size, memory=len(per), batch=len(batch), buffer_size=buffer_size, train_step=train_step)))
         
+        # Perform action
         action = env.action_space.sample()
         next_state, reward, done, truncated, info = env.step(action)
         
@@ -136,7 +138,9 @@ if __name__ == "__main__":
             # Sample batch
             indices, *batch = per.sample(batch_size=batch_size)
             
+            # Update network
+            ...
             
-        # Reset on episode end
+         
         if done or truncated:
             state, _ = env.reset()
