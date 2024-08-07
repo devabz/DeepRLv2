@@ -21,15 +21,16 @@ if __name__ == "__main__":
     
     buffer_size = 100_000
     start_updates = 5_000
-    batch_size = 1024
-    save_freq = 1_000
+    batch_size = 2048
+    save_freq = 100_000
     update_freq = 10
     test_episodes = 1
     max_episode_steps = 1_000
-    test_max_episode_steps = 100
-    total_training_steps = 250_000
+    test_max_episode_steps = 1_000
+    total_training_steps = 1_300_000
     truncate = True
     record = True
+    fps = 30
     priority_percentage = 0.25
     
     config = dict(
@@ -110,7 +111,8 @@ if __name__ == "__main__":
         total_training_steps=total_training_steps,
         test_max_episode_steps=test_max_episode_steps,
         truncate=truncate,
-        record=record
+        record=record,
+        fps=fps
     )
     
     # Run

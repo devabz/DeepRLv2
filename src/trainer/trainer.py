@@ -134,10 +134,10 @@ class Trainer:
                 self.agent.save(path)
                 test_process = self.run_test_process(env, step, path)
                     
-                    
         if test_process is not None:
             print(f'Ending process')
             test_process.join()
+                
                     
     def run_test_process(self, env, step, path):
         if self.record:
@@ -157,7 +157,7 @@ class Trainer:
                 self.agent.__class__,
                 self.test_max_episode_steps,
                 self.test_episodes, 
-                30
+                self.fps
             ))
             test_process.start()
 
