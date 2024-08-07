@@ -8,11 +8,11 @@ class BaseMemory(ABC):
     
     @abstractmethod
     def append(self, *args, **kwargs):
-        ...
+        pass
     
     @abstractmethod
     def sample(self, *args, **kwargs):
-        ...
+        pass
 
 
 class BaseAgent(ABC):
@@ -21,13 +21,13 @@ class BaseAgent(ABC):
     
     @abstractmethod
     def update_offline(self, *args, **kwargs):
-        ...
+        pass
     
     @abstractmethod
     def update_online(self, *args, **kwargs):
-        ...
+        pass
     
     @abstractmethod
     def select_action(self, state: np.ndarray, greedy: bool = False):
-        ...
+        pass
     
