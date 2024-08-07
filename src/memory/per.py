@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from base import BaseMemory
+from src.memory.base import BaseMemory
 
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -10,6 +10,9 @@ def update(indices: np.ndarray, priorities: np.ndarray, buffer_size: int, tree: 
     differences = priorities - tree[tree_indices]
     while np.any(tree_indices >= 0):
         for index, difference in zip(tree_indices, differences):
+            if index < 0:
+                continue
+            
             tree[index] += difference
         
         parent_indices = (tree_indices - 1) // 2
@@ -17,23 +20,30 @@ def update(indices: np.ndarray, priorities: np.ndarray, buffer_size: int, tree: 
     
 def sample(priorities: np.ndarray, buffer_size: int, tree: np.ndarray) -> np.ndarray:
     priorities = priorities.copy()
-    indicies = np.zeros_like(priorities, dtype=int)
-    while any(indicies < buffer_size - 1):
-        left_tree_indices = 2* indicies + 1
+    indices = np.zeros_like(priorities, dtype=int)
+    max_index = len(tree) - 1
+
+    while any(indices < buffer_size - 1):
+        left_tree_indices = 2 * indices + 1
         right_tree_indices = left_tree_indices + 1
+        
+        # Ensure indices are within bounds
+        left_tree_indices = np.clip(left_tree_indices, 0, max_index)
+        right_tree_indices = np.clip(right_tree_indices, 0, max_index)
+        
         
         left_batch_indices = np.where(priorities < tree[left_tree_indices])[0]
         right_batch_indices = np.where(priorities >= tree[left_tree_indices])[0]
         
-        indicies[left_batch_indices] = left_tree_indices[left_batch_indices]
-        indicies[right_batch_indices] = right_tree_indices[right_batch_indices]
+        indices[left_batch_indices] = left_tree_indices[left_batch_indices]
+        indices[right_batch_indices] = right_tree_indices[right_batch_indices]
         priorities[right_batch_indices] -= tree[left_tree_indices[right_batch_indices]]
         
-    return indicies - buffer_size + 1
+    return indices - buffer_size + 1
 
 
 class PER(BaseMemory):
-    def __init__(self, state_dims, action_dims, buffer_size):
+    def __init__(self, state_dims: int, action_dims: int, buffer_size: int, priority_percentage: float, start_updates: int):
         self.s = np.zeros((buffer_size, state_dims))    # state
         self.a = np.zeros((buffer_size, action_dims))   # action
         self.r = np.zeros((buffer_size, 1))             # reward
@@ -44,8 +54,21 @@ class PER(BaseMemory):
         self.buffer_size = buffer_size
         self._size = 0
         self.clock = 0
-        self.samples_given = 0
+        self.samples_given = 0,
+        self._percentage = priority_percentage
+        self.start_updates = start_updates
         
+    @property
+    def prioritized(self):
+        return True
+    
+    @property
+    def percentage(self):
+        return min(max(0, (1 - self._percentage)), 1) * self._size/self.buffer_size
+    
+    def set_percentage(self, percentage):
+        self._percentage = percentage
+    
     def append(
         self, 
         steps: np.ndarray, 
@@ -57,39 +80,47 @@ class PER(BaseMemory):
         truncated: np.ndarray
     ) -> None:
         
-        indicies = steps % self.buffer_size
-        self.s[indicies] = states
-        self.a[indicies] = actions
-        self.r[indicies] = rewards
-        self.n[indicies] = next_states
-        self.d[indicies] = dones
-        self.t[indicies] = truncated
+        indices = steps % self.buffer_size
+        self.s[indices] = states
+        self.a[indices] = actions
+        self.r[indices] = rewards
+        self.n[indices] = next_states
+        self.d[indices] = dones
+        self.t[indices] = truncated
         
         self._size = min(self._size + 1, self.buffer_size)
         
-    def update(self, indicies: np.ndarray, priorities: np.ndarray) -> None:
+    def update(self, indices: np.ndarray, priorities: np.ndarray) -> None:
+        if self._size < self.start_updates:
+            return
+        
         update(
-            indices=indicies, 
+            indices=indices, 
             priorities=priorities, 
             buffer_size=self.buffer_size, 
             tree=self.tree
         )
+        
+        self.tree = np.abs(self.tree)
+        self.tree /= np.max(self.tree)
     
     def sample(self, batch_size: int) -> tuple:
-        indicies = sample(
-            priorities=np.random.uniform(0, self.tree[0], batch_size),
+        percentage = int(self.percentage * batch_size)
+        indices = sample(
+            priorities=np.random.uniform(0, self.tree[0], batch_size - percentage),
             buffer_size=self.buffer_size,
             tree=self.tree
         )
         
+        indices = np.array([*indices, *np.random.randint(0, self.buffer_size, percentage)])
         return (
-            indicies,
-            torch.Tensor(self.s[indicies]).to(DEVICE),
-            torch.Tensor(self.a[indicies]).to(DEVICE),
-            torch.Tensor(self.r[indicies]).to(DEVICE),
-            torch.Tensor(self.n[indicies]).to(DEVICE),
-            torch.Tensor(self.d[indicies]).to(DEVICE),
-            torch.Tensor(self.t[indicies]).to(DEVICE)
+            indices,
+            torch.Tensor(self.s[indices]).to(DEVICE),
+            torch.Tensor(self.a[indices]).to(DEVICE),
+            torch.Tensor(self.r[indices]).to(DEVICE),
+            torch.Tensor(self.n[indices]).to(DEVICE),
+            torch.Tensor(self.d[indices]).to(DEVICE),
+            torch.Tensor(self.t[indices]).to(DEVICE)
         )
     
     def __len__(self):

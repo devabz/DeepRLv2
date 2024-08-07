@@ -4,13 +4,12 @@ import numpy as np
 
 
 def compile_to_mp4(frames, fps, path):
-    frames = np.array(frames).astype(np.uint8)
     height, width, layers = frames[0].shape
 
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     out = cv2.VideoWriter(path, fourcc, fps, (width, height))
 
-    for frame in frames:
+    for i, frame in enumerate(frames):
         out.write(frame)
 
     out.release()
