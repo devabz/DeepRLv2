@@ -7,11 +7,11 @@ class BaseMemory(ABC):
         super().__init__()
     
     @abstractmethod
-    def append(self, *args, **kwargs):
+    def append(self, *args, **kwargs) -> None:
         pass
     
     @abstractmethod
-    def sample(self, *args, **kwargs):
+    def sample(self, *args, **kwargs) -> tuple:
         pass
 
 
