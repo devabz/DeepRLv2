@@ -9,7 +9,7 @@ if __name__ == "__main__":
     # Configuration
     env_name = 'HalfCheetah-v4'
     max_episode_steps = None
-    hidden_dims = 128
+    hidden_dims = 256
     tau = 0.005
     lr_a = 0.001
     lr_c = 0.001
@@ -19,19 +19,25 @@ if __name__ == "__main__":
     noise_decay = 0.999
     policy_delay = 2
     
-    buffer_size = 100_000
-    start_updates = 5_000
+    start_select_actions = 100_000
+    
+    workers = 4
+    buffer_size = 50_000
+    start_memory_updates = 2000
     batch_size = 2048
-    save_freq = 100_000
-    update_freq = 10
-    test_episodes = 1
-    max_episode_steps = 1_000
-    test_max_episode_steps = 1_000
-    total_training_steps = 1_300_000
+    save_total = 20
+    test_episodes = 2
+    test_max_episode_steps = 250
+    
+    update_freq = 25
+    max_episode_steps = 500
+    total_training_steps = 1_000_000
+    save_freq = total_training_steps // save_total
     truncate = True
     record = True
     fps = 30
     priority_percentage = 0.25
+    
     
     config = dict(
         algo=dict(
@@ -45,7 +51,7 @@ if __name__ == "__main__":
                 lr_a=lr_a,
                 lr_c=lr_c,
                 tau=tau,
-                gamma=gamma,
+                gamma=gamma
             )
         ),
         memory=dict(
@@ -53,10 +59,11 @@ if __name__ == "__main__":
             config=dict(
                 buffer_size=buffer_size,
                 priority_percentage=priority_percentage,
-                start_updates=start_updates
+                start_memory_updates=start_memory_updates
             )
         ),
         trainer=dict(
+            save_total=save_total,
             save_freq=save_freq,
             batch_size=batch_size,
             update_freq=update_freq,
@@ -65,7 +72,8 @@ if __name__ == "__main__":
             total_training_steps=total_training_steps,
             test_max_episode_steps=test_max_episode_steps,
             truncate=truncate,
-            record=record
+            record=record,
+            start_select_actions=start_select_actions,
         )
     )
     
@@ -79,7 +87,7 @@ if __name__ == "__main__":
         action_dims=action_dims,
         buffer_size=buffer_size,
         priority_percentage=priority_percentage,
-        start_updates=start_updates
+        start_memory_updates=start_memory_updates
     )
     agent = TD3(
         state_dims=state_dims,
@@ -110,9 +118,11 @@ if __name__ == "__main__":
         max_episode_steps=max_episode_steps,
         total_training_steps=total_training_steps,
         test_max_episode_steps=test_max_episode_steps,
+        start_select_actions=start_select_actions,
         truncate=truncate,
         record=record,
-        fps=fps
+        fps=fps,
+        workers=workers
     )
     
     # Run

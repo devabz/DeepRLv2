@@ -43,7 +43,7 @@ def sample(priorities: np.ndarray, buffer_size: int, tree: np.ndarray) -> np.nda
 
 
 class PER(BaseMemory):
-    def __init__(self, state_dims: int, action_dims: int, buffer_size: int, priority_percentage: float, start_updates: int):
+    def __init__(self, state_dims: int, action_dims: int, buffer_size: int, priority_percentage: float, start_memory_updates: int):
         self.s = np.zeros((buffer_size, state_dims))    # state
         self.a = np.zeros((buffer_size, action_dims))   # action
         self.r = np.zeros((buffer_size, 1))             # reward
@@ -56,7 +56,7 @@ class PER(BaseMemory):
         self.clock = 0
         self.samples_given = 0,
         self._percentage = priority_percentage
-        self.start_updates = start_updates
+        self.start_memory_updates = start_memory_updates
         
     @property
     def prioritized(self):
@@ -64,7 +64,11 @@ class PER(BaseMemory):
     
     @property
     def percentage(self):
-        return min(max(0, (1 - self._percentage)), 1) * self._size/self.buffer_size
+        switch = (1 - (self.start_memory_updates >= self._size))
+        rate = self._size/self.buffer_size 
+        prioritized_part = min(max(0, self._percentage), 1)
+        random_part = 1 -  prioritized_part * rate * switch
+        return random_part
     
     def set_percentage(self, percentage):
         self._percentage = percentage
@@ -91,7 +95,7 @@ class PER(BaseMemory):
         self._size = min(self._size + 1, self.buffer_size)
         
     def update(self, indices: np.ndarray, priorities: np.ndarray) -> None:
-        if self._size < self.start_updates:
+        if self._size < self.start_memory_updates:
             return
         
         update(
