@@ -6,6 +6,7 @@ from argparse import ArgumentParser
 from gymnasium.wrappers import RecordEpisodeStatistics
 from tqdm import tqdm
 from src import *
+from moviepy.editor import VideoFileClip
 
 parser = ArgumentParser()
 parser.add_argument('logdir', type=str, help='Log direectory')
@@ -36,7 +37,15 @@ def load(args):
     agent.load(models)
     
     return agent, env, index, path, config
-        
+
+
+def convert_to_gif(path):
+    # Load the MP4 file
+    video = VideoFileClip(path)
+
+    # Write the GIF to a file
+    video.write_gif(path.replace('mp4', 'gif'))
+
 
 if __name__ == "__main__":
     args = parser.parse_args()
@@ -78,4 +87,8 @@ if __name__ == "__main__":
     os.makedirs(path, exist_ok=True)
     path = path/env.spec.id/name
     os.makedirs(path, exist_ok=True)
-    compile_to_mp4(frames, fps=fps, path=path/f'fps_{fps}_index_{model_index}_steps_{args.steps}_max_steps_{max_steps}.mp4')
+    path=path/f'fps_{fps}_index_{model_index}_steps_{args.steps}_max_steps_{max_steps}.mp4'
+    compile_to_mp4(frames, fps=fps, path=path)
+    convert_to_gif(path.absolute().__str__())
+    os.remove(path)
+    
