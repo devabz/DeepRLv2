@@ -73,7 +73,7 @@ class Trainer:
         logdir:str,
         config: dict,
         env: gym.Env, 
-        save_freq: int, 
+        save_total: int, 
         batch_size: int,
         update_freq: int,
         agent: BaseAgent, 
@@ -95,7 +95,8 @@ class Trainer:
         self.record = record
         self.config = config
         self.truncate = truncate
-        self.save_freq = save_freq
+        self.save_total = save_total
+        self.save_freq = total_training_steps//save_total
         self.batch_size = batch_size
         self.update_freq = update_freq
         self.test_episodes = test_episodes
@@ -114,8 +115,7 @@ class Trainer:
         self.videos_directory = self.artifacts_directory/'videos'
         self.models_directory = self.artifacts_directory/'models'
         
-        
-        
+        self.env = gym.make(self.env.spec.id, max_episode_steps=max_episode_steps)
         os.makedirs(self.writer_directory, exist_ok=True)
         os.makedirs(self.artifacts_directory, exist_ok=True)
         with open(self.artifacts_directory/'config.json', 'w') as f:
@@ -181,13 +181,17 @@ class Trainer:
                 self.agent.save(path)
                 self.run_test_process(env, step, path)
                         
+                        
+        self.shutdown_workers()
+            
+    def shutdown_workers(self):
         for worker in self.workers:
             self.task_queue.put(None)
         
         for worker in self.workers:
             worker.join()
             
-                
+                    
                     
     def run_test_process(self, env, step, path):
         if self.record:

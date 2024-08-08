@@ -7,30 +7,30 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     # Configuration
-    env_name = 'HalfCheetah-v4'
+    env_name = 'Walker2d-v4'
     max_episode_steps = None
-    hidden_dims = 256
+    hidden_dims = 512
     tau = 0.005
-    lr_a = 0.001
-    lr_c = 0.001
+    lr_a = 0.0005
+    lr_c = 0.0005
     gamma = 0.95
-    noise = 0.25
-    noise_clip = 0.25
+    noise = 0.5
+    noise_clip = 0.5
     noise_decay = 0.999
     policy_delay = 2
     
     start_select_actions = 100_000
     
     workers = 4
-    buffer_size = 50_000
-    start_memory_updates = 2000
+    buffer_size = 100_000
+    start_memory_updates = int(0.25 * buffer_size)
     batch_size = 2048
-    save_total = 20
-    test_episodes = 2
-    test_max_episode_steps = 250
+    update_freq = 2
+    save_total = 50
+    test_episodes = 1
+    test_max_episode_steps = 1_000
     
-    update_freq = 25
-    max_episode_steps = 500
+    max_episode_steps = 1_000
     total_training_steps = 1_000_000
     save_freq = total_training_steps // save_total
     truncate = True
@@ -64,7 +64,6 @@ if __name__ == "__main__":
         ),
         trainer=dict(
             save_total=save_total,
-            save_freq=save_freq,
             batch_size=batch_size,
             update_freq=update_freq,
             test_episodes=test_episodes,
@@ -73,6 +72,8 @@ if __name__ == "__main__":
             test_max_episode_steps=test_max_episode_steps,
             truncate=truncate,
             record=record,
+            fps=fps,
+            workers=workers,
             start_select_actions=start_select_actions,
         )
     )
@@ -110,7 +111,7 @@ if __name__ == "__main__":
         env=env,
         logdir=f'{args.logdir}/{env_name}',
         config=config,
-        save_freq=save_freq,
+        save_total=save_total,
         batch_size=batch_size,
         update_freq=update_freq,
         agent=agent,
