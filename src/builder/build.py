@@ -10,16 +10,17 @@ def _memory(config, state_dims, action_dims):
     return buffer(**config['config'], state_dims=state_dims, action_dims=action_dims)
     
 
-def _td3(config, env):
+def _td3(config, env, test=False):
     DEVICE = None
     state_dims = env.observation_space.shape[0]
     action_dims = env.action_space.shape[0]
     max_action = env.action_space.high
     min_action = env.action_space.low
     
-    if config.get('memory', None) is None:
+    if test:
         DEVICE = 'cpu'
         memory = None
+        
     else:
         memory = _memory(config['memory'], state_dims, action_dims)
         
@@ -37,14 +38,14 @@ def _td3(config, env):
 
 
 
-def build(config, env, logdir):
+def build(config, env, logdir, test):
     algo = config['algo']['type'].lower()
     agent = AGENTS.get(algo, None)
     if agent is None:
         raise ValueError(f"Algorithm {algo} not implemented")
 
     else:
-        agent = agent(config, env)
+        agent = agent(config, env, test)
         trainer = Trainer(
             env=env,
             logdir=f'{logdir}/{env.spec.id}',

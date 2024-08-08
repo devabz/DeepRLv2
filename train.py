@@ -16,5 +16,5 @@ if __name__ == "__main__":
         config['trainer']['save_total'] = args.save_total
         
     env = gym.make(args.env)
-    trainer = build(config, env=env, logdir=args.logdir)
+    trainer = build(config, env=env, logdir=args.logdir, test=False)
     trainer.train()
