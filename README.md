@@ -13,6 +13,7 @@ A collection of policy gradient methods to solve the mujoco environments
 ### HalfCheetah-v4
 <table style="width:100%;">
   <tr>
+    <th></th>
     <th>Walker2D-v4</th>
     <th>HalfCheetah-v4</th>
     <th>Pusher-v4</th>
