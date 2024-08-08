@@ -14,22 +14,21 @@ A collection of policy gradient methods to solve the mujoco environments
 <table style="width:100%;">
   <tr>
     <th></th>
-    <th>Walker2D-v4</th>
-    <th>HalfCheetah-v4</th>
-    <th>Pusher-v4</th>
-    <th>Ant-v4</th>
-  </tr>
-  <tr>
     <th>TD3</th>
-    <td><img src="output/Walker2d-v4/240808-104135/fps_30_index_1000000_steps_1000_max_steps_500.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/HalfCheetah-v4/240808-012041/fps_30_index_550000_steps_1000_max_steps_250.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/Pusher-v4/240808-031547/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/Pusher-v4/240808-025540/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <th>SAC</th>
   </tr>
   <tr>
-    <th>SAC</th>
+    <th>Walker2D-v4</th>
     <td><img src="output/Walker2d-v4/240808-104135/fps_30_index_1000000_steps_1000_max_steps_500.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="output/Walker2d-v4/240808-104135/fps_30_index_1000000_steps_1000_max_steps_500.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+  </tr>
+  <tr>
+    <th>HalfCheetah-v4</th>
     <td><img src="output/HalfCheetah-v4/240808-012041/fps_30_index_550000_steps_1000_max_steps_250.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="output/HalfCheetah-v4/240808-012041/fps_30_index_550000_steps_1000_max_steps_250.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+  </tr>
+  <tr>
+    <th>Pusher-v4</th>
     <td><img src="output/Pusher-v4/240808-031547/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
     <td><img src="output/Pusher-v4/240808-025540/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
   </tr>
