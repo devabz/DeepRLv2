@@ -13,8 +13,10 @@ A collection of policy gradient methods to solve the mujoco environments
 ### HalfCheetah-v4
 <table style="width:100%;">
   <tr>
-    <th>15k Time Steps</th>
-    <th>700k Time Steps</th>
+    <th>Walker2D-v4</th>
+    <th>HalfCheetah-v4</th>
+    <th>Pusher-v4</th>
+    <th>Ant-v4</th>
   </tr>
   <tr>
     <td><img src="output/Walker2d-v4/240808-104135/fps_30_index_1000000_steps_1000_max_steps_500.gif" alt="Result 700k" style="width:100%;"/></td>
