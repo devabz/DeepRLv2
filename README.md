@@ -47,11 +47,11 @@ conda activate DeepRLv2
 
 # How to run
 ```
-python main.py --config ./path/to/agent/config.json --logdir ./path/to/logdir 
+python train.py --config ./path/to/agent/config.json --logdir ./path/to/logdir [--env]
 ```
 ### Example
 ```
-python main.py --config templates/td3.json --logdir logs
+python train.py --env Walker2d-v4 --config templates/td3.json --logdir logs
 ```
 
 
