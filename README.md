@@ -16,9 +16,9 @@ A collection of policy gradient methods to solve the mujoco environments
   <tr>
     <th>Walker2D-v4</th>
     <td><img src="output/Walker2d-v4/240808-104135/fps_30_index_1000000_steps_1000_max_steps_500.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/Walker2d-v4/240808-104135/fps_30_index_1000000_steps_1000_max_steps_500.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="output/Walker2d-v4/240809-005028/fps_60_index_650000_steps_2000_max_steps_1000.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
     <td><img src="output/Walker2d-v4/240808-055040/fps_30_index_1000000_steps_2000_max_steps_1000.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/Walker2d-v4/240808-055040/fps_30_index_1000000_steps_2000_max_steps_1000.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="output/Walker2d-v4/240809-005028/fps_60_index_650000_steps_2000_max_steps_1000.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
   </tr>
   <tr>
     <th>HalfCheetah-v4</th>

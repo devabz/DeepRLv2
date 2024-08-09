@@ -14,6 +14,7 @@ parser.add_argument('output', type=str, help='Path to ouput directory')
 parser.add_argument('--index', type=int, help='Model index', default=None)
 parser.add_argument('--steps', type=int, help='Total steps', default=int(1e3))
 parser.add_argument('--max_steps', type=int, help='Max episode steps', default=None)
+parser.add_argument('--fps', type=int, help='Compile fps', default=30)
 
 
 def load(args):
@@ -32,17 +33,17 @@ def load(args):
     if index is None:
         index = sorted(os.listdir(models), key=int)[-1]
     
-    models /= index
+    models /= str(index)
     
     agent.load(models)
     
     return agent, env, index, path, config
 
 
-def convert_to_gif(path):
+def convert_to_gif(path, fps):
     # Load the MP4 file
     video = VideoFileClip(path)
-
+    video = video.set_fps(fps)
     # Write the GIF to a file
     video.write_gif(path.replace('mp4', 'gif'))
 
@@ -81,14 +82,20 @@ if __name__ == "__main__":
 
     env.close()
     
-    fps = 30
+    fps = args.fps
     
     path = Path(args.output)
     os.makedirs(path, exist_ok=True)
     path = path/env.spec.id/name
     os.makedirs(path, exist_ok=True)
-    path=path/f'fps_{fps}_index_{model_index}_steps_{args.steps}_max_steps_{max_steps}.mp4'
-    compile_to_mp4(frames, fps=fps, path=path)
-    convert_to_gif(path.absolute().__str__())
-    os.remove(path)
+    count = 0
+    path_ = path/f'fps_{fps}_index_{model_index}_steps_{args.steps}_max_steps_{max_steps}_{count}.mp4'
+    while os.path.isfile(path_):
+        count += 1
+        path_ = path/f'fps_{fps}_index_{model_index}_steps_{args.steps}_max_steps_{max_steps}_{count}.mp4'
+        
+        
+    compile_to_mp4(frames, fps=fps, path=path_)
+    convert_to_gif(path_.absolute().__str__(), fps=fps)
+    #os.remove(path)
     
