@@ -28,6 +28,11 @@ A collection of policy gradient methods to solve the mujoco environments
     <td><img src="output/Pusher-v4/240808-031547/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
     <td><img src="output/Pusher-v4/240808-025540/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
   </tr>
+  <tr>
+    <th>Hopper-v4</th>
+    <td><img src="output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+  </tr>
 </table>
 
 
