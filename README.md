@@ -36,10 +36,10 @@ A collection of policy gradient methods to solve the mujoco environments
   </tr>
   <tr>
     <th>Hopper-v4</th>
-    <td><img src="logs/output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="logs/output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="logs/output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="logs/output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/hopper-4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/hopper-4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/hopper-4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/hopper-4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
   </tr>
   <tr>
     <th>Humaoid-v4</th>
