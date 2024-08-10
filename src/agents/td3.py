@@ -69,7 +69,7 @@ class TD3(BaseAgent):
             action = action.cpu().numpy()
         
         if not greedy:
-            action += np.random.normal(0, self.noise * self.max, size=self.max.shape)
+            action += np.random.normal(0, self.noise * self.max, size=self.max.shape).clip(-self.noise_clip, self.noise_clip)
             
         action = action.clip(self.min, self.max)
         

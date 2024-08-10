@@ -96,6 +96,6 @@ if __name__ == "__main__":
         
         
     compile_to_mp4(frames, fps=fps, path=path_)
-    convert_to_gif(path_.absolute().__str__(), fps=fps)
+    #convert_to_gif(path_.absolute().__str__(), fps=fps)
     #os.remove(path)
     

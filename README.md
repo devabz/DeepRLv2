@@ -15,31 +15,38 @@ A collection of policy gradient methods to solve the mujoco environments
   </tr>
   <tr>
     <th>Walker2D-v4</th>
-    <td><img src="output/Walker2d-v4/240809-021217/output.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/Walker2d-v4/240809-005028/output_701.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/Walker2d-v4/240809-005028/output_701.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/Walker2d-v4/240809-005028/output_701.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/Walker2d-v4/240809-021217/output.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/Walker2d-v4/240809-005028/output_701.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/Walker2d-v4/240809-005028/output_701.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/Walker2d-v4/240809-005028/output_701.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
   </tr>
   <tr>
     <th>HalfCheetah-v4</th>
-    <td><img src="output/HalfCheetah-v4/240808-012041/fps_30_index_550000_steps_1000_max_steps_250.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/HalfCheetah-v4/240808-012041/fps_30_index_550000_steps_1000_max_steps_250.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/HalfCheetah-v4/240808-012041/fps_30_index_550000_steps_1000_max_steps_250.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/HalfCheetah-v4/240808-012041/fps_30_index_550000_steps_1000_max_steps_250.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/HalfCheetah-v4/240808-012041/fps_30_index_550000_steps_1000_max_steps_250.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/HalfCheetah-v4/240808-012041/fps_30_index_550000_steps_1000_max_steps_250.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/HalfCheetah-v4/240808-012041/fps_30_index_550000_steps_1000_max_steps_250.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/HalfCheetah-v4/240808-012041/fps_30_index_550000_steps_1000_max_steps_250.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
   </tr>
   <tr>
     <th>Pusher-v4</th>
-    <td><img src="output/Pusher-v4/240808-031547/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/Pusher-v4/240808-025540/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/Pusher-v4/240808-025540/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/Pusher-v4/240808-025540/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/Pusher-v4/240808-031547/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/Pusher-v4/240808-025540/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/Pusher-v4/240808-025540/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/Pusher-v4/240808-025540/fps_30_index_1000000_steps_400_max_steps_100.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
   </tr>
   <tr>
     <th>Hopper-v4</th>
-    <td><img src="output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/output.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+  </tr>
+  <tr>
+    <th>Humaoid-v4</th>
+    <td><img src="logs/output/Humanoid-v4/240810-011431/2_000_000.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/Humanoid-v4/240810-011431/2_000_000.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/Humanoid-v4/240810-011431/2_000_000.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="logs/output/Humanoid-v4/240810-011431/2_000_000.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
   </tr>
 </table>
 
