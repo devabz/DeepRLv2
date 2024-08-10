@@ -14,20 +14,6 @@ A collection of policy gradient methods to solve the mujoco environments
     <th>PPO</th>
   </tr>
   <tr>
-    <th>Walker2D-v4</th>
-    <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-  </tr>
-  <tr>
-    <th>HalfCheetah-v4</th>
-    <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-  </tr>
-  <tr>
     <th>Pusher-v4</th>
     <td><img src="gifs/td3/pusher-v4_2.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
     <td><img src="gifs/td3/pusher-v4_1.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
@@ -47,6 +33,27 @@ A collection of policy gradient methods to solve the mujoco environments
     <td><img src="gifs/td3/humanoid-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
     <td><img src="gifs/td3/humanoid-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
     <td><img src="gifs/td3/humanoid-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+  </tr>
+  <tr>
+    <th>Walker2D-v4</th>
+    <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+  </tr>
+  <tr>
+    <th>Ant-v4</th>
+    <td><img src="gifs/td3/ant-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/ant-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/ant-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/ant-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
+  </tr>
+  <tr>
+    <th>HalfCheetah-v4</th>
+    <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
+    <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
   </tr>
 </table>
 
