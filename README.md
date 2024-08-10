@@ -60,45 +60,12 @@ python train.py --env Walker2d-v4 --config templates/td3.json --logdir logs
     <th>PPO</th>
   </tr>
   <tr>
-    <th>Pusher-v4</th>
+    <th>TD3</th>
     <td><img src="gifs/td3/pusher-v4_2.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/pusher-v4_1.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/pusher-v4_2.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/pusher-v4_1.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-  </tr>
-  <tr>
-    <th>Hopper-v4</th>
     <td><img src="gifs/td3/hopper-4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/hopper-4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/hopper-4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/hopper-4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-  </tr>
-  <tr>
-    <th>Humaoid-v4</th>
     <td><img src="gifs/td3/humanoid-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/humanoid-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/humanoid-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/humanoid-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-  </tr>
-  <tr>
-    <th>Walker2D-v4</th>
     <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/walker2d-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-  </tr>
-  <tr>
-    <th>Ant-v4</th>
     <td><img src="gifs/td3/ant-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/ant-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/ant-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/ant-v4.gif" alt="Result 700k" style="width:100%; max-height:200px;" /></td>
-  </tr>
-  <tr>
-    <th>HalfCheetah-v4</th>
-    <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
-    <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
     <td><img src="gifs/td3/halfcheetah-v4.gif" alt="Result 15k" style="width:100%; max-height:200px;" /></td>
   </tr>
 </table>
