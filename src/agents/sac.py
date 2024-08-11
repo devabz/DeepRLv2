@@ -104,10 +104,13 @@ class  SAC(BaseAgent):
     
     def select_action(self, state: np.ndarray, greedy: bool = False):
         with torch.no_grad():
+            if state.ndim == 1:
+                state = state[None, :]
+                
             state = torch.Tensor(state).to(self.DEVICE)
             action, _ = self.actor.sample(state, reparameterize=False)
         
-        return action.cpu().detach().numpy()
+        return action.cpu().detach().numpy()[0]
     
     def save(self, path):
         torch.save(self.critic.to('cpu').state_dict(), os.path.join(path, 'critic.pth'))
