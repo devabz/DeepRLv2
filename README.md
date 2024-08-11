@@ -14,7 +14,6 @@ A collection of policy gradient methods to solve the mujoco environments
 ##### Example
 ```
 ...
-
 ```
 ## Run Locally
 ##### Install locally
