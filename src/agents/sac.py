@@ -20,7 +20,6 @@ class  SAC(BaseAgent):
             tau: float,
             gamma: float, 
             alpha: float,
-            lambda_: float, 
             min_action: np.ndarray,
             max_action: np.ndarray,  
             memory: BaseMemory, 
@@ -58,7 +57,6 @@ class  SAC(BaseAgent):
         self.tau = tau
         self.alpha = alpha
         self.gamma = gamma
-        self.lambda_ = lambda_
         self.memory = memory
         self.min = min_action
         self.max = max_action
