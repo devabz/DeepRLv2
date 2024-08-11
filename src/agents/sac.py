@@ -104,7 +104,7 @@ class  SAC(BaseAgent):
     
     def select_action(self, state: np.ndarray, greedy: bool = False):
         with torch.no_grad():
-            state = torch.Tensor(state)
+            state = torch.Tensor(state).to(self.DEVICE)
             action, _ = self.actor.sample(state, reparameterize=False)
         
         return action.cpu().detach().numpy()
