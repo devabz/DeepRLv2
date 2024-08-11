@@ -18,10 +18,32 @@ conda activate DeepRLv2
 ```
 
 # How to run
+## Docker
+### Download image 
+```
+...
+```
+### Run image
+```
+...
+```
+#### Example
+```
+...
+```
+## Locally
+### Install locally
+```
+git clone https://github.com/devabz/DeepRLv2.git
+cd DeepRLv2
+conda env create --file environment.yml
+conda activate DeepRLv2
+```
+### Run locally
 ```
 python train.py --config ./path/to/agent/config.json --logdir ./path/to/logdir [--env]
 ```
-### Example
+#### Example
 ```
 python train.py --env Walker2d-v4 --config templates/td3.json --logdir logs
 ```
