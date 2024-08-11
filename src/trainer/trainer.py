@@ -140,7 +140,7 @@ class Trainer:
         test_process = None
         run_test = True
         for step in progress_bar:
-            progress_bar.set_description_str(str(dict(env=env.spec.id, episode=episode,  steps=steps, reward=round(ep_rw, 2), updates=self.agent.updates, top=round(self.agent.memory.tree[0], 2))))
+            progress_bar.set_description_str(str(dict(env=env.spec.id, episode=episode,  steps=steps, reward=round(ep_rw, 2), updates=self.agent.updates)))
             
             steps += 1
             

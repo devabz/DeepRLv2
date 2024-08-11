@@ -28,20 +28,23 @@ class ActorGaussian(nn.Module):
         
         return mu, sigma
     
-    def sample(self, state, reparameterize=True):
+    def sample(self, state, actions=None, reparameterize=True):
         mu, sigma = self.forward(state)
         probs = Normal(mu, sigma)
-        if reparameterize:
-            actions = probs.rsample()
-        else:
-            actions = probs.sample()
-        
-        actions = actions.clamp(self.min, self.max)
+        if actions is None:
+            if reparameterize:
+                actions = probs.rsample()
+            else:
+                actions = probs.sample()
+            
+            actions = actions.clamp(self.min, self.max)
+            
         log_probs = probs.log_prob(actions)
         log_probs -= torch.log(1 - actions.pow(2) + self.reparam_noise)
         log_probs = log_probs.sum(1, keepdim=True)
         
         return actions, log_probs
+    
         
         
         

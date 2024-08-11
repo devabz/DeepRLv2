@@ -18,7 +18,9 @@ class  SAC(BaseAgent):
             lr_v: float, 
             lr_c: float, 
             tau: float,
-            gamma: float,  
+            gamma: float, 
+            alpha: float,
+            lambda_: float, 
             min_action: np.ndarray,
             max_action: np.ndarray,  
             memory: BaseMemory, 
@@ -54,7 +56,9 @@ class  SAC(BaseAgent):
         self.critic_optimizer = torch.optim.Adam(self.critic.parameters(), lr=lr_c)
         
         self.tau = tau
+        self.alpha = alpha
         self.gamma = gamma
+        self.lambda_ = lambda_
         self.memory = memory
         self.min = min_action
         self.max = max_action
@@ -67,13 +71,47 @@ class  SAC(BaseAgent):
     def _update_networks(self, *batch):
         self.updates += 1
         logs = defaultdict(lambda : None)
-        
         states, actions, rewards, next_states, dones, truncated = batch
         
+        # Compute the target state value
+        target_value = torch.min(* self.critic(states, actions))
+        _, log_prob = self.actor.sample(states, actions=actions)
+        target_value = target_value - self.alpha * log_prob
+        
+        # Compute the loss of value network
+        current_value = self.value(states)
+        value_loss = torch.nn.functional.mse_loss(current_value, target_value)
+        
+        # Update the value network using gradient descent
+        self.value_optimizer.zero_grad()
+        value_loss.backward()
+        self.value_optimizer.step()
+        
+        # Compute the target Q value
         with torch.no_grad():
-            next_actions = self.actor_target(next_states)
-            q_values = torch.min(*self.critic_target(next_states, next_actions))
-            target = rewards + q_values * self.gamma * (1 - dones)
+            target_q = rewards + self.gamma * self.value_target(next_states)
+
+        # Compute the loss of the Q networks
+        q1, q2 = self.critic(states, actions)
+        critic_loss = torch.nn.functional.mse_loss(q1, target_q) + torch.nn.functional.mse_loss(q2, target_q)
+        
+        # Update the Q networks using gradient descent
+        self.critic_optimizer.zero_grad()
+        critic_loss.backward()
+        self.critic_optimizer.step()
+        
+        # Update the actor network using gradient ascent
+        _, log_prob = self.actor.sample(states, actions=actions)
+        actor_loss = -(self.critic.q1(states, actions) - self.alpha * log_prob).mean()
+        self.actor_optimizer.zero_grad()
+        actor_loss.backward()
+        self.actor_optimizer.step()
+        
+        # Update the target value network
+        self._soft_update(self.value, self.value_target)
+            
+        logs['td_errors'] = np.abs((q1 - target_q).mean().cpu().detach().numpy())
+        return logs
     
     def update_online(self, *args, **kwargs):
         logs = dict()
@@ -110,7 +148,9 @@ class  SAC(BaseAgent):
             state = torch.Tensor(state).to(self.DEVICE)
             action, _ = self.actor.sample(state, reparameterize=False)
         
-        return action.cpu().detach().numpy()[0]
+        action = action.cpu().detach().numpy()[0]
+        
+        return action.clip(self.min, self.max)
     
     def save(self, path):
         torch.save(self.critic.to('cpu').state_dict(), os.path.join(path, 'critic.pth'))
