@@ -5,7 +5,6 @@ FROM continuumio/miniconda3 AS build-env
 WORKDIR /app
 
 # Copy environment.yml to the working directory
-COPY environment.yml .
 COPY requirements.txt .
 COPY scripts/setup.sh .
 
