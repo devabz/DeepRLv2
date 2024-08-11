@@ -9,8 +9,7 @@ A collection of policy gradient methods to solve the mujoco environments
 - [How to run](#how-to-run)
 - [Results](#results)
 
-# How to run
-## Docker
+## Run using Docker
 ##### Download image 
 ```
 ...
@@ -24,7 +23,7 @@ A collection of policy gradient methods to solve the mujoco environments
 ...
 
 ```
-## Locally
+## Run Locally
 ##### Install locally
 ```
 git clone https://github.com/devabz/DeepRLv2.git
