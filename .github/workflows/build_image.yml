@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  REGISTRY: https://hub.docker.com/
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs: 
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -13,5 +17,5 @@ jobs:
       - name: Checkout repository
         env:
           MY_SECRET_KEY: ${{ secrets.DOCKERHUB_USERNAME }}
-        run: echo $MY_SECRET_KEY
+        run: echo $REGISTRY && echo $IMAGE_NAME
       
