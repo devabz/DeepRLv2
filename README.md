@@ -2,13 +2,6 @@
 A collection of policy gradient methods to solve the mujoco environments
 
 
-
-# Table of Contents
-
-- [How to install](#how-to-install)
-- [How to run](#how-to-run)
-- [Results](#results)
-
 ## Run using Docker
 ##### Download image 
 ```
