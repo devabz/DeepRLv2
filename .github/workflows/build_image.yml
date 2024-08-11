@@ -28,4 +28,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: '${{ env.IMAGE_NAME }}:latest'
+          tags: $(echo "${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]'):latest
