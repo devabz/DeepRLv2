@@ -1,1 +1,13 @@
-build: 2
+name: Publish Docker image
+
+on:
+  push:
+
+jobs: 
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        run: echo "Abrahm"
+      
