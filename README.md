@@ -9,17 +9,9 @@ A collection of policy gradient methods to solve the mujoco environments
 - [How to run](#how-to-run)
 - [Results](#results)
 
-# How to install
-```
-git clone https://github.com/devabz/DeepRLv2.git
-cd DeepRLv2
-conda env create --file environment.yml
-conda activate DeepRLv2
-```
-
 # How to run
 ## Docker
-### Download image 
+##### Download image 
 ```
 ...
 ```
