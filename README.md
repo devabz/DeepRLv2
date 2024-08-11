@@ -13,11 +13,9 @@ docker run -it --gpus all -v ./logs/:app/logs abuia/deeprlv2:latest
 ```
 #### Inside the container
 ```
-(td3-v1) python train.py --env Walker2d-v4 --config templates/td3.json --logdir logs
+(deeprlv2) python train.py --env Walker2d-v4 --config templates/td3.json --logdir logs
 ```
-##### Example
-```
-...
+
 ```
 ## Run Locally
 ##### Install locally
