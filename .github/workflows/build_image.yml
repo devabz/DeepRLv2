@@ -11,5 +11,7 @@ jobs:
     
     steps:
       - name: Checkout repository
-        run: echo "Abrahm"
+        env:
+          MY_SECRET_KEY: ${{ secrets.DOCKERHUB_USERNAME }}
+        run: echo $MY_SECRET_KEY
       
