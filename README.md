@@ -5,10 +5,13 @@ A collection of policy gradient methods to solve the mujoco environments
 ## Run using Docker
 ##### Download image 
 ```
+docker pull abuia/deeprlv2:latest
 ...
 ```
 ##### Run image
 ```
+docker run -it --gpus all -v ./logs/:app/logs abuia/deeprlv2:latest
+(td3-v1) python train.py --env Walker2d-v4 --config templates/td3.json --logdir logs
 ...
 ```
 ##### Example
