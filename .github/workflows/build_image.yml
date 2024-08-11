@@ -6,8 +6,8 @@ on:
       - main
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  REGISTRY: docker.io
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/deeprlv2
 
 jobs: 
   build-and-push-image:
@@ -28,4 +28,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: deeprlv2:latest
+          tags: ${{ env.IMAGE_NAME }}:latest
