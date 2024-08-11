@@ -60,10 +60,12 @@ python train.py --env Walker2d-v4 --config templates/td3.json --logdir logs
 <table style="width:100%;">
   <tr>
     <th></th>
-    <th>DDPG</th>
-    <th>TD3</th>
-    <th>SAC</th>
-    <th>PPO</th>
+    <th>Pusher-v4</th>
+    <th>Hopper-v4</th>
+    <th>Humanoid-v4</th>
+    <th>Walker2D-v4</th>
+    <th>Ant-v4</th>
+    <th>HalfCheetah-v4</th>
   </tr>
   <tr>
     <th>TD3</th>
